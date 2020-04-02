@@ -1,0 +1,6 @@
+xyz
+xzy
+yxz
+yzx
+zxy
+zyx
