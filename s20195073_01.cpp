@@ -1,19 +1,25 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 #define INF 12345678
 using namespace std;
 
-char str[INF], ans[INF];
+string str;
+char ans[INF];
 int len, chkstr[INF];
+map<string, int> m;
 ifstream inputfile;
 ofstream outputfile;
 
 void makestr(int startnum)
 {
 	if (startnum == len){
-		outputfile << ans;
-		outputfile << endl;
+		if (m.find(ans)==m.end()){
+			m[ans] = 1;
+			outputfile << ans;
+			outputfile << endl;
+		}
 		return;
 	}
 	for (int i=0;i<len;i++){
@@ -25,7 +31,6 @@ void makestr(int startnum)
 		}
 	}
 	return;
-
 }
 
 int main(int argc, char* argv[])
@@ -41,7 +46,7 @@ int main(int argc, char* argv[])
 	if (inputfile.is_open() && outputfile.is_open()){
 		string cache = "";
 		while(getline(inputfile, cache)){
-			str[len] = cache.c_str()[0];
+			str +=  cache.c_str()[0];
 			len++;
 		}
 		if (str[len-1] == '\0') len--;
